@@ -1,0 +1,11 @@
+{
+  "name": "node-redis-demo",
+  "description": "A demo HTTP app that talks to Redis.",
+  "version": "0.0.1",
+  "main": "server.js",
+  "dependencies": {
+    "express": "4.11.*",
+    "redis": "0.12.*",
+    "morgan": "1.5.*"
+  }
+}
