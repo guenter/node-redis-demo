@@ -29,4 +29,6 @@ app.get('/set', function(req, res) {
     });
 });
 
-app.listen(8080);
+var port = process.env.PORT || 8080;
+console.log('Listening on port ' + port);
+app.listen(port);
