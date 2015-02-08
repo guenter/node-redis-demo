@@ -1,0 +1,50 @@
+{
+  "id" : "/mysite",
+  "apps": [
+    {
+      "id": "frontend",
+      "container": {
+        "type": "DOCKER",
+        "docker": {
+          "image": "superguenter/node-redis-demo",
+          "network": "HOST"
+        }
+      },
+      "env": {
+        "REDIS_HOST": "redis.mysite.marathon.mesos"
+      },
+      "instances": 1,
+      "cpus": 0.1,
+      "ports": [8080],
+      "requirePorts": true,
+      "healthChecks": [
+        {
+          "protocol": "HTTP",
+          "gracePeriodSeconds": 300
+        }
+      ],
+      "dependencies": ["/mysite/redis"]
+    },
+    {
+      "container": {
+        "type": "DOCKER",
+        "docker": {
+          "image": "redis",
+          "network": "HOST"
+        }
+      },
+      "id": "redis",
+      "instances": 1,
+      "cpus": 0.1,
+      "ports": [6379],
+      "requirePorts": true,
+      "healthChecks": [
+        {
+          "protocol": "TCP",
+          "gracePeriodSeconds": 300
+        }
+      ]
+    }
+  ]
+}
+
